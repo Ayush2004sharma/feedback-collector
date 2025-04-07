@@ -1,3 +1,5 @@
+import { withNetlify } from '@netlify/next'
+
 let userConfig = undefined
 try {
   // try to import ESM first
@@ -12,7 +14,7 @@ try {
 }
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+let nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -30,9 +32,7 @@ const nextConfig = {
 }
 
 if (userConfig) {
-  // ESM imports will have a "default" property
   const config = userConfig.default || userConfig
-
   for (const key in config) {
     if (
       typeof nextConfig[key] === 'object' &&
@@ -48,4 +48,5 @@ if (userConfig) {
   }
 }
 
-export default nextConfig
+// 👇 Wrap the merged config with Netlify support
+export default withNetlify(nextConfig)
