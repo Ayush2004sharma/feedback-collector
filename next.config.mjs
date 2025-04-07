@@ -1,4 +1,5 @@
-import { withNetlify } from '@netlify/next'
+import netlifyPkg from '@netlify/next'
+const { withNetlify } = netlifyPkg.default
 
 let userConfig = undefined
 try {
@@ -48,5 +49,4 @@ if (userConfig) {
   }
 }
 
-// 👇 Wrap the merged config with Netlify support
 export default withNetlify(nextConfig)
