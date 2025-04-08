@@ -1,5 +1,3 @@
-const { withNetlify } = require('@netlify/next')
-
 let userConfig = {}
 try {
   userConfig = require('./v0-user-next.config.js')
@@ -44,4 +42,4 @@ for (const key in userConfig) {
   }
 }
 
-module.exports = withNetlify(nextConfig)
+module.exports = nextConfig
